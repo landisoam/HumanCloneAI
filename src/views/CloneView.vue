@@ -1,26 +1,21 @@
 <template>
-    <v-card class=" elevation-0">
-      <v-toolbar
-      class="rounded"
-        color="blue-grey-lighten-4"
-        height="100"
-    
-      >
-        <v-app-bar-nav-icon></v-app-bar-nav-icon>
-  
-        <v-toolbar-title class="text-h4">Human Clone</v-toolbar-title>
-  
-        <v-spacer></v-spacer>
-  
-        <v-btn icon>
-          <v-icon>mdi-magnify</v-icon>
-        </v-btn>
-  
-        <v-btn icon>
-          <v-icon>mdi-dots-vertical</v-icon>
-        </v-btn>
-  
-        <!-- <template v-slot:extension>
+  <v-card class=" elevation-0">
+    <v-toolbar class="rounded" color="blue-grey-lighten-4" height="100">
+      <v-app-bar-nav-icon></v-app-bar-nav-icon>
+
+      <v-toolbar-title class="text-h4">Human Clone</v-toolbar-title>
+
+      <v-spacer></v-spacer>
+
+      <v-btn icon>
+        <v-icon>mdi-magnify</v-icon>
+      </v-btn>
+
+      <v-btn icon>
+        <v-icon>mdi-dots-vertical</v-icon>
+      </v-btn>
+
+      <!-- <template v-slot:extension>
           <v-tabs
             v-model="currentItem"
             fixed-tabs
@@ -63,37 +58,78 @@
             </v-menu>
           </v-tabs>
         </template> -->
-      </v-toolbar>
+    </v-toolbar>
 
-      <!-- Under AppTitle -->
-      <v-row no-gutters>
-        <v-col cols="2">
-          <v-sheet class="pa-2 ma-2">
-            <v-card height="1000"
-                class="rounded-xl elevation-0 pa-5 ma-1"
-                color="blue-grey-lighten-5">
-                <!-- Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. -->
-                <v-card height="200px" class="rounded-xl elevation-0 ma-5">
-                    <v-row class="text-center">
-                        <v-btn icon="mdi-plus" size="x-large"></v-btn>
-                    </v-row>
-                </v-card>        
+    <!-- Under AppTitle -->
+    <v-row no-gutters>
+      <v-col cols="2">
+        <v-sheet class="pa-2 ma-2">
+          <v-card height="1000" class="rounded-xl elevation-0 pa-5 ma-1" color="blue-grey-lighten-5">
+            <!-- Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. -->
+            <v-card height="200px" class="rounded-xl elevation-0 ma-5">
+              <v-container class="justify-center">
+                <v-btn icon="mdi-plus" class="elevation-1" size="x-large"></v-btn>
+              </v-container>
             </v-card>
-          </v-sheet>
-        </v-col>
-        <v-col cols="7">
-          <v-sheet class="pa-2 ma-2">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-          </v-sheet>
-        </v-col>
-        <v-col cols="3">
-          <v-sheet class="pa-2 ma-2">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-          </v-sheet>
-        </v-col>
-      </v-row>
-  
-      <!-- <v-window v-model="currentItem">
+            <v-card height="200px" class="rounded-xl elevation-0 ma-5">
+              <v-container class="justify-center">
+                <v-btn icon="mdi-plus" class="elevation-1 justify-center" size="x-large"></v-btn>
+              </v-container>
+            </v-card>
+            <v-card height="200px" class="rounded-xl elevation-0 ma-5">
+              <v-container class="justify-center">
+                <v-btn icon="mdi-plus" class="elevation-1 justify-center" size="x-large"></v-btn>
+              </v-container>
+            </v-card>
+          </v-card>
+
+        </v-sheet>
+      </v-col>
+      <v-col cols="7">
+        <v-sheet class="pa-2 ma-2">
+          <v-card height="900px" class="rounded-xl elevation-0 pa-5 mb-5" color="blue-grey-lighten-5">
+            <!-- Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. -->
+            <v-card height="90%" class="rounded-xl elevation-0 ma-5">
+              <v-container class="justify-center">
+                <!-- <v-btn icon="mdi-plus" class="elevation-1" size="x-large"></v-btn> -->
+
+              </v-container>
+            </v-card>
+          </v-card>
+
+          <v-card height="200" class="rounded-xl elevation-0 pa-5 " color="blue-grey-lighten-5">
+            <!-- Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. -->
+            <!-- <v-card class="rounded-xl elevation-0 ma-5">
+              <v-container class="justify-center">
+                <v-btn icon="mdi-plus" class="elevation-1" size="x-large"></v-btn>
+                
+              </v-container>
+            </v-card> -->
+          </v-card>
+        </v-sheet>
+      </v-col>
+      <v-col cols="3">
+        <v-sheet class="pa-2 ma-2">
+          <v-card height="1100px" class="rounded-xl elevation-0 pa-5 mb-5" color="blue-grey-lighten-5">
+            <!-- Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. -->
+
+            <v-card class="rounded-xl elevation-0 ma-1">
+              <v-container>
+                <h2 class="pb-3">Scence</h2>
+                <v-select label="Select"
+                  :items="['California', 'Colorado', 'Florida', 'Georgia', 'Texas', 'Wyoming']"
+                  variant="filled"
+                  ></v-select>
+                <!-- <v-btn icon="mdi-plus" class="elevation-1" size="x-large"></v-btn> -->
+
+              </v-container>
+            </v-card>
+          </v-card>
+        </v-sheet>
+      </v-col>
+    </v-row>
+
+    <!-- <v-window v-model="currentItem">
         <v-window-item
           v-for="item in items.concat(more)"
           :key="item"
@@ -107,31 +143,32 @@
           </v-card>
         </v-window-item>
       </v-window> -->
-    </v-card>
-  </template>
+  </v-card>
+</template>
 
-  <script>
-  export default {
-    data: () => ({
-      currentItem: 'tab-Web',
-      items: [
-        'Web', 'Shopping', 'Videos', 'Images',
-      ],
-      more: [
-        'News', 'Maps', 'Books', 'Flights', 'Apps',
-      ],
-      text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-    }),
+<script>
+export default {
 
-    methods: {
-      addItem (item) {
-        const removed = this.items.splice(0, 1)
-        this.items.push(
-          ...this.more.splice(this.more.indexOf(item), 1),
-        )
-        this.more.push(...removed)
-        this.$nextTick(() => { this.currentItem = 'tab-' + item })
-      },
+  data: () => ({
+    currentItem: 'tab-Web',
+    items: [
+      'Web', 'Shopping', 'Videos', 'Images',
+    ],
+    more: [
+      'News', 'Maps', 'Books', 'Flights', 'Apps',
+    ],
+    text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+  }),
+
+  methods: {
+    addItem(item) {
+      const removed = this.items.splice(0, 1)
+      this.items.push(
+        ...this.more.splice(this.more.indexOf(item), 1),
+      )
+      this.more.push(...removed)
+      this.$nextTick(() => { this.currentItem = 'tab-' + item })
     },
-  }
+  },
+}
 </script>
