@@ -13,6 +13,18 @@ import * as directives from 'vuetify/directives'
 // import 'material-design-icons-iconfont/dist/material-design-icons.css'
 // // app.js
 import '@mdi/font/css/materialdesignicons.css'
+import VueTheMask from 'vue-the-mask'
+import VueVideoPlayer from 'vue-video-player'
+
+// require videojs style
+import 'video.js/dist/video-js.css'
+// import 'vue-video-player/src/custom-theme.css'
+import VueSweetalert2 from 'vue-sweetalert2';
+import 'sweetalert2/dist/sweetalert2.min.css';
+// Axios
+import axios from 'axios'
+import VueAxios from 'vue-axios'
+
 
 
 
@@ -22,10 +34,19 @@ const vuetify = createVuetify({
   iconfont: 'mdi'
 })
 
+const options = {
+  confirmButtonColor: '#41b882',
+  cancelButtonColor: '#ff7674',
+};
+
 loadFonts()
+
 
 createApp(App)
   .use(router)
   .use(vuetify)
-  // .use(VueVideoPlayer)
+  .use(VueTheMask)
+  .use(VueVideoPlayer)
+  .use(VueAxios, axios)
+  .use(VueSweetalert2, options)
   .mount('#app')

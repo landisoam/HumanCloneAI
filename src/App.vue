@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <v-app >
     <v-main>
       <router-view/>
     </v-main>
@@ -10,9 +10,8 @@
 
 export default {
   name: 'App',
-
   data: () => ({
-    //
+    BackgroundColor: '#673AB7'
   }),
 }
 </script>
