@@ -3,7 +3,7 @@
     <v-toolbar class="" style="box-shadow: 0px 0px 5px 5px #ECEFF1;" color="white" height="80">
       <v-app-bar-nav-icon></v-app-bar-nav-icon>
 
-      <v-toolbar-title class="text-h5">Human Clone</v-toolbar-title>
+    <img src="../../src/assets/image/logo.png" style="height:100%" class="pa-5">
 
       <v-spacer></v-spacer>
       <v-btn class="mx-6 rounded-lg" prepend-icon="mdi-download" variant="tonal" color="indigo-darken-2" size="x-large">
