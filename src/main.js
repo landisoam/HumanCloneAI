@@ -24,7 +24,9 @@ import 'sweetalert2/dist/sweetalert2.min.css';
 // Axios
 import axios from 'axios'
 import VueAxios from 'vue-axios'
-
+// Date
+import DateFormat from '@voidsolutions/vue-dateformat'
+// 
 
 
 
@@ -48,5 +50,6 @@ createApp(App)
   .use(VueTheMask)
   .use(VueVideoPlayer)
   .use(VueAxios, axios)
+  .use(DateFormat)
   .use(VueSweetalert2, options)
   .mount('#app')

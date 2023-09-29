@@ -7,8 +7,6 @@
       <!-- <v-toolbar-title class="text-h5">Human Clone</v-toolbar-title> -->
       <v-spacer></v-spacer>
       <v-spacer></v-spacer>
-
-      <v-spacer></v-spacer>
       <v-btn class="mx-6 rounded-lg" prepend-icon="mdi-download" variant="tonal" color="indigo-darken-2" size="x-large">
         Share
       </v-btn>
@@ -127,20 +125,12 @@
       </v-col>
       <v-col cols="7">
         <v-sheet class="ma-2">
-          <v-card height="500px" class="rounded-lg mb-3" style="box-shadow: 0px 0px 30px 5px #ECEFF1;" color="">
-            <!-- Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. -->
-            <!-- <v-card height="90%" class="rounded-xl elevation-0 ma-3" color="blue-grey-lighten-5">
-              <v-container class="justify-center " color="">
-                <v-btn icon="mdi-plus" class="elevation-1" size="x-large"></v-btn>
-                
-              </v-container>
-            </v-card> -->
-            <video-player class="video-player vjs-big-play-centered" style="height:100%; width: 100%;"
-              :key="playerOptions.sources" :options="playerOptions" crossorigin="anonymous" playsinline controls :playback-rates="[0.7, 1.0, 1.5, 2.0]"
-              @mounted="handleMounted" @ready="handleEvent($event)" @play="handleEvent($event)"
-              @pause="handleEvent($event)" @ended="handleEvent($event)" @loadeddata="handleEvent($event)"
-              @waiting="handleEvent($event)" @playing="handleEvent($event)" @canplay="handleEvent($event)"
-              @canplaythrough="handleEvent($event)" @timeupdate="handleEvent(player?.currentTime())" />
+          <v-card height="100px" class="rounded-lg mb-3" style="box-shadow: 0px 0px 30px 5px #ECEFF1;" color="">
+            <audio controls style="width:95%" class="ma-5">
+              <source src="horse.ogg" type="audio/ogg">
+              <source src="horse.mp3" type="audio/mpeg">
+              Your browser does not support the audio element.
+            </audio>
           </v-card>
 
           <v-card height="100px" class="rounded-lg pa-7 mb-3" style="box-shadow: 0px 0px 30px 5px #ECEFF1;">
@@ -157,13 +147,14 @@
               </v-col>
               <v-col cols="4">
                 <v-flex justify-center>
-                  <v-select label="Language" v-model="language" :items="languages" :item-props="languageslist"></v-select>
+                  <v-select style="border: none;" label="Language"
+                :items="['California', 'Colorado', 'Florida', 'Georgia', 'Texas', 'Wyoming']" variant="filled"></v-select>
                 </v-flex>
               </v-col>
             </v-row>
           </v-card>
           <text-h5>
-                  <!-- {{ speaker.name }} -->
+                  {{ speaker.name }}
                 </text-h5>
           <v-card height="300px" class="rounded-lg pa-7" style="box-shadow: 0px 0px 30px 5px #ECEFF1;">
             <v-row justify="end">
@@ -186,8 +177,8 @@
               </v-col>
               <v-spacer></v-spacer>
               <v-col>
-                <v-switch class="ma-0 pa-0" color="indigo-darken-2" v-model="tts_to_audio" inset flat
-                  append-icon="mdi-microphone" prepend-icon="mdi-text"></v-switch>
+                <!-- <v-switch class="ma-0 pa-0" color="indigo-darken-2" v-model="tts_to_audio" inset flat
+                  append-icon="mdi-microphone" prepend-icon="mdi-text"></v-switch> -->
               </v-col>
               <v-spacer></v-spacer>
               <v-col>
@@ -312,9 +303,6 @@
           <v-btn class="rounded-lg mt-5 mb-5" width="100%" prepend-icon="mdi-cube-send" variant="flat" color="indigo-accent-4" size="large" @click="submit_generate()">
               Generate
           </v-btn>
-          <v-btn class="rounded-lg mt-5 mb-5" width="100%" prepend-icon="mdi-cube-send" variant="flat" color="indigo-accent-4" size="large" @click="generate_video()">
-              Generate
-          </v-btn>
         </v-sheet>
       </v-col>
     </v-row>
@@ -342,7 +330,6 @@ import 'video.js/dist/video-js.css'
 import { defineComponent } from 'vue'
 import { VideoPlayer } from '@videojs-player/vue'
 import 'video.js/dist/video-js.css'
-import { supabase } from '../supabase'
 
 export default defineComponent({
   data: () => ({
@@ -357,42 +344,28 @@ export default defineComponent({
     videopath:'',
     file:null,
     filename: null,
-    
     speaker:{
       name:null
-    },
-    language:{
-      lang:null
     },
     generate_audio:[],
     speakername:[
         {
-          name: 'Landis',
+          name: 'landis.pth',
           gender: 'Male',
         },
         {
-          name: 'Eunice',
+          name: 'eunice.pth',
           gender: 'Female',
         },
         {
-          name: 'yy',
+          name: 'jooting.pth',
           gender: 'Female',
+        },
+        {
+          name: 'cheeweng.pth',
+          gender: 'Male',
         },
       ],
-    languages:[
-        {
-          lang: 'English',
-        },
-        {
-          lang: '简体中文',
-        },
-        {
-          lang: '日本語',
-        },
-        {
-          lang: 'Mix',
-        },
-    ],
     playerOptions: {
       // videojs options
       muted: false,
@@ -408,7 +381,7 @@ export default defineComponent({
     mounted() {
       console.log('this is current player instance object', this.player)
     },
-    tts_to_audio: true,
+    tts_to_audio: false,
     tts_content:"The Woodman set to work at once, and so sharp was his axe that the tree was soon chopped nearly through.",
     opacity: 0,
     blur: 0,
@@ -447,19 +420,10 @@ export default defineComponent({
     // this.device = navigator.mediaDevices.getUserMedia({ audio: true });
   },
   methods: {
-    uuidv4() {
-        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'
-        .replace(/[xy]/g, function (c) {
-            const r = Math.random() * 16 | 0, 
-                v = c == 'x' ? r : (r & 0x3 | 0x8);
-            return v.toString(16);
-        });
-    },
     changeVideo(filename_uuid){
       const newsource = [{
         type: "video/mp4",
-        src: "http://aserious.tplinkdns.com:8001/" + filename_uuid + '.mp4'
-        // src: "http://aserious.tplinkdns.com:8000/storage/v1/object/public/generatedvideo/" + filename_uuid + '.mp4'
+        src: "http://aserious.tplinkdns.com:8000/storage/v1/object/public/generatedvideo/" + filename_uuid + 'mp4'
       }];
       this.playerOptions.sources = newsource;
     },
@@ -473,11 +437,7 @@ export default defineComponent({
           subtitle: item.gender,
         }
       },
-    languageslist (item) {
-        return {
-          title: item.lang,
-        }
-    },
+    
     // Generate Audio into server 
     async submit_generate(){
       console.log('tts:' + this.tts_to_audio );
@@ -485,12 +445,12 @@ export default defineComponent({
         // TTS to voice
         console.log('tts: started')
         this.generate_audio = await this.axios.get(
-          'http://aserious.tplinkdns.com:8080/test',
+          'http://219.92.235.182:8080/test',
           {
             params: {
               'text': this.tts_content,
-              'speaker': this.speaker.name, //yy
-              'lang': this.language.lang
+              'speaker': 'yy', //yy
+              'lang': 'English'
             },
             headers: {
               'accept': 'application/json',
@@ -502,7 +462,7 @@ export default defineComponent({
         const form = new FormData();
         form.append('file', this.file);
         this.generate_audio = await this.axios.post(
-          'http://aserious.tplinkdns.com:8080/infer',
+          'http://219.92.235.182:8080/infer',
           form,
           {
             params: {
@@ -522,16 +482,14 @@ export default defineComponent({
       this.$swal({
         position: 'top-end',
         icon: 'success',
-        title: this.generate_audio.data,
+        title: generate_audio.data,
         showConfirmButton: false,
         timer: 1500
       });
-      await this.generate_video(this.generate_audio.data);
     },
 
     // Generate video into server 
-    async generate_video(wavfile){
-      const fileuuid = this.uuidv4();
+    async generate_video(){
       // console.log(this.filename);
       // console.log(this.humanselected);
       if(this.humanselected == 1){
@@ -545,18 +503,14 @@ export default defineComponent({
       {
         this.videopath = "/home/seriousco/Desktop/spk_list/video/jooting.mp4";
       }
-
       console.log(this.videopath);
-      console.log(fileuuid);
-      console.log(this.filename);
       const generatevideo = await this.axios.post(
-          'http://aserious.tplinkdns.com:7001/test','',
+          'http://219.92.235.182:7001/test',
+          '',
           {
             params: {
               'video': this.videopath,
-              'uuid': fileuuid,
-              'filepath': wavfile,
-              'checkpoint': 'wav2lip_gan',
+              'filename': this.filename,
               'checkpoint': 'wav2lip_gan',
               'face_restore_model': 'CodeFormer',
               'no_smooth': 'false',
@@ -574,32 +528,19 @@ export default defineComponent({
             },
             headers: {
               'accept': 'application/json',
-              'content-type': 'application/x-www-form-urlencoded'
-              // 'Content-Type': 'multipart/form-data'
+              // 'content-type': 'application/x-www-form-urlencoded'
             }
           }
       );
       console.log(generatevideo.data);
-      if(generatevideo.data == 'Success'){
-        this.$swal({
+      this.$swal({
         position: 'top-end',
         icon: 'success',
         title: "Video Generate Completly",
         showConfirmButton: false,
         timer: 4000
       });   
-      // location.reload();
-      this.changeVideo(fileuuid);
-      }else{
-        this.$swal({
-          position: 'top-end',
-          icon: 'error',
-          title: "Video Generate Fail",
-          showConfirmButton: false,
-          timer: 4000
-        });   
-      }
-      
+      location.reload();
     },
 
     // Update file into server
@@ -612,7 +553,7 @@ export default defineComponent({
       console.log(this.file);
       
       const generate_audio = await this.axios.post(
-        'http://aserious.tplinkdns.com:8080/infer',
+        'http://219.92.235.182:8080/infer',
         form,
         {
           params: {

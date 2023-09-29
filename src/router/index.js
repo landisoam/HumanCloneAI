@@ -1,19 +1,58 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import CloneView from '../views/CloneView.vue'
+import CloneVoiceView from '../views/CloneVoiceView.vue'
+import LoginView from '../views/LoginView.vue'
+import RegisterView from '../views/RegisterView.vue'
+// Admin
+import AdminDashboard from '../views/admin/DashboardView.vue'
+import HumanModelView from '../views/admin/HumanModelView.vue'
+import SpeakerModelView from '../views/admin/SpeakerModelView.vue'
+
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
-      path: '/',
+      path: '/application',
       name: 'Application',
       component: CloneView
+    },
+    {
+      path: '/voice',
+      name: 'Voice',
+      component: CloneVoiceView
+    },
+    {
+      path: '/login',
+      name: 'Login',
+      component: LoginView
+    },
+    {
+      path: '/register',
+      name: 'Register',
+      component: RegisterView
     },
     {
       path: '/home',
       name: 'home',
       component: HomeView
+    },
+    // Admin
+    {
+      path: '/admin/dashboard',
+      name: 'Dashboard',
+      component: AdminDashboard
+    },
+    {
+      path: '/admin/humanmodel',
+      name: 'HumanModel',
+      component: HumanModelView
+    },
+    {
+      path: '/admin/speakermodel',
+      name: 'SpeakerModel',
+      component: SpeakerModelView
     },
     {
       path: '/about',
