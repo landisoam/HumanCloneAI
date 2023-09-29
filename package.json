@@ -13,6 +13,7 @@
   "dependencies": {
     "@codekraft-studio/vue-record": "^0.0.3",
     "@fortawesome/fontawesome-svg-core": "^6.4.2",
+    "@liripeng/vue-audio-player": "^1.5.2",
     "@supabase/supabase-js": "^2.36.0",
     "@videojs-player/vue": "^1.0.0",
     "@voidsolutions/vue-dateformat": "^0.5.1",

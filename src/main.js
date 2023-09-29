@@ -26,6 +26,7 @@ import axios from 'axios'
 import VueAxios from 'vue-axios'
 // Date
 import DateFormat from '@voidsolutions/vue-dateformat'
+import AudioPlayer from '@liripeng/vue-audio-player'
 // 
 
 
@@ -51,5 +52,6 @@ createApp(App)
   .use(VueVideoPlayer)
   .use(VueAxios, axios)
   .use(DateFormat)
+  .use(AudioPlayer)
   .use(VueSweetalert2, options)
   .mount('#app')

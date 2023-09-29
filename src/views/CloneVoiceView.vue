@@ -125,12 +125,21 @@
       </v-col>
       <v-col cols="7">
         <v-sheet class="ma-2">
-          <v-card height="100px" class="rounded-lg mb-3" style="box-shadow: 0px 0px 30px 5px #ECEFF1;" color="">
-            <audio controls style="width:95%" class="ma-5">
+          <v-card height="150px" class="rounded-lg mb-3" style="box-shadow: 0px 0px 30px 5px #ECEFF1;" color="">
+            <!-- <audio controls style="width:95%" class="ma-5">
               <source src="horse.ogg" type="audio/ogg">
-              <source src="horse.mp3" type="audio/mpeg">
+              <source :src="generate_song" type="audio/mpeg">
               Your browser does not support the audio element.
-            </audio>
+            </audio> -->
+              <div class="ma-5">
+                {{ currentAudioName || audioList[0].name }}
+                <audio-player
+                  ref="audioPlayer"
+                  :audio-list="audioList.map(elm => elm.url)"
+                  :before-play="handleBeforePlay"
+                  theme-color="#5C6BC0"
+                />
+              </div>
           </v-card>
 
           <v-card height="100px" class="rounded-lg pa-7 mb-3" style="box-shadow: 0px 0px 30px 5px #ECEFF1;">
@@ -154,7 +163,7 @@
             </v-row>
           </v-card>
           <text-h5>
-                  {{ speaker.name }}
+                  <!-- {{ speaker.name }} -->
                 </text-h5>
           <v-card height="300px" class="rounded-lg pa-7" style="box-shadow: 0px 0px 30px 5px #ECEFF1;">
             <v-row justify="end">
@@ -213,7 +222,6 @@
                     label="Upload a .Wav file"
                     type="file" id="file" ref="file"
                     accept=".wav"
-                    v-on:change="handleFileUpload()"
                   ></v-file-input>
                   <!-- <text-h5>{{ file }}</text-h5> -->
                 </div>
@@ -300,7 +308,7 @@
           <!-- <v-btn class="rounded-lg mt-5 mb-5" width="100%" prepend-icon="mdi-cube-send" variant="flat" color="indigo-accent-4" size="large" @click="submit_generate()">
               Generate
           </v-btn> -->
-          <v-btn class="rounded-lg mt-5 mb-5" width="100%" prepend-icon="mdi-cube-send" variant="flat" color="indigo-accent-4" size="large" @click="submit_generate()">
+          <v-btn class="rounded-lg mt-5 mb-5" width="100%" prepend-icon="mdi-cube-send" variant="flat" color="indigo-accent-4" size="large" @click="handleFileUpload()">
               Generate
           </v-btn>
         </v-sheet>
@@ -347,6 +355,14 @@ export default defineComponent({
     speaker:{
       name:null
     },
+    currentAudioName: '',
+      audioList: [
+        {
+          name: 'audio1',
+          url: 'https://www.0dutv.com/upload/dance/20200316/C719452E3C7834080007662021EA968E.mp3'
+        }
+      ],
+    generate_song:null,
     generate_audio:[],
     speakername:[
         {
@@ -420,12 +436,23 @@ export default defineComponent({
     // this.device = navigator.mediaDevices.getUserMedia({ audio: true });
   },
   methods: {
-    changeVideo(filename_uuid){
-      const newsource = [{
-        type: "video/mp4",
-        src: "http://aserious.tplinkdns.com:8000/storage/v1/object/public/generatedvideo/" + filename_uuid + 'mp4'
-      }];
-      this.playerOptions.sources = newsource;
+    handleBeforePlay(next) {
+      // There are a few things you can do here...
+      this.currentAudioName = this.audioList[this.$refs.audioPlayer.currentPlayIndex].name
+
+      next() // Start playing
+    },
+    changeAudio(filename_uuid){
+      var audio =  [
+        {
+          name: filename_uuid,
+          url: 'http://aserious.tplinkdns.com:8002/' + filename_uuid,
+        } 
+      ]
+      // var src = "http://aserious.tplinkdns.com:8002/" + filename_uuid;
+      
+      this.audioList = audio;
+      console.log(audio);
     },
     changehuman(index){
       this.humanselected = index
@@ -437,111 +464,6 @@ export default defineComponent({
           subtitle: item.gender,
         }
       },
-    
-    // Generate Audio into server 
-    async submit_generate(){
-      console.log('tts:' + this.tts_to_audio );
-      if(this.tts_to_audio == true){
-        // TTS to voice
-        console.log('tts: started')
-        this.generate_audio = await this.axios.get(
-          'http://219.92.235.182:8080/test',
-          {
-            params: {
-              'text': this.tts_content,
-              'speaker': 'yy', //yy
-              'lang': 'English'
-            },
-            headers: {
-              'accept': 'application/json',
-            }
-          }
-        );
-      }else{
-        // Wav to voice
-        const form = new FormData();
-        form.append('file', this.file);
-        this.generate_audio = await this.axios.post(
-          'http://219.92.235.182:8080/infer',
-          form,
-          {
-            params: {
-              'spk_list': 'landis',
-              'model_path': "/home/seriousco/Desktop/spk_list/audio/" + this.speaker.name  //landis.pth
-            },
-            headers: {
-              'accept': 'application/json',
-              'Content-Type': 'multipart/form-data'
-            }
-          }
-        );
-      }
-        
-      console.log(this.generate_audio.data);
-      this.filename = this.generate_audio.data;
-      this.$swal({
-        position: 'top-end',
-        icon: 'success',
-        title: generate_audio.data,
-        showConfirmButton: false,
-        timer: 1500
-      });
-    },
-
-    // Generate video into server 
-    async generate_video(){
-      // console.log(this.filename);
-      // console.log(this.humanselected);
-      if(this.humanselected == 1){
-        this.videopath = "/home/seriousco/Desktop/spk_list/video/owen.mp4";
-      }
-      else if(this.humanselected == 2)
-      {
-        this.videopath = "/home/seriousco/Desktop/spk_list/video/landis.mp4";
-      }
-      else
-      {
-        this.videopath = "/home/seriousco/Desktop/spk_list/video/jooting.mp4";
-      }
-      console.log(this.videopath);
-      const generatevideo = await this.axios.post(
-          'http://219.92.235.182:7001/test',
-          '',
-          {
-            params: {
-              'video': this.videopath,
-              'filename': this.filename,
-              'checkpoint': 'wav2lip_gan',
-              'face_restore_model': 'CodeFormer',
-              'no_smooth': 'false',
-              'only_mouth': 'false',
-              'resize_factor': '1',
-              'mouth_mask_dilatation': '15',
-              'erode_face_mask': '15',
-              'mask_blur': '15',
-              'pad_top': '0',
-              'pad_bottom': '0',
-              'pad_left': '0',
-              'pad_right': '0',
-              'active_debug': 'false',
-              'code_former_weight': '0.75'
-            },
-            headers: {
-              'accept': 'application/json',
-              // 'content-type': 'application/x-www-form-urlencoded'
-            }
-          }
-      );
-      console.log(generatevideo.data);
-      this.$swal({
-        position: 'top-end',
-        icon: 'success',
-        title: "Video Generate Completly",
-        showConfirmButton: false,
-        timer: 4000
-      });   
-      location.reload();
-    },
 
     // Update file into server
     async handleFileUpload() {
@@ -553,12 +475,12 @@ export default defineComponent({
       console.log(this.file);
       
       const generate_audio = await this.axios.post(
-        'http://219.92.235.182:8080/infer',
+        'http://aserious.tplinkdns.com:8081/infer',
         form,
         {
           params: {
             'spk_list': 'landis',
-            'model_path': "/home/seriousco/Desktop/spk_list/audio/" + this.speaker.name
+            'model_path': '/home/seriousco/Desktop/spk_list/audio/' + this.speaker.name
           },
           headers: {
             // ...form.getHeaders(),
@@ -576,6 +498,7 @@ export default defineComponent({
         showConfirmButton: false,
         timer: 1500
       });
+      this.changeAudio(this.file.name);
     },
     recordAudio() {
       this.device.then((stream) => {
