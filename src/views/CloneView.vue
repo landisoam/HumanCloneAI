@@ -2,7 +2,6 @@
   <v-card class=" elevation-0">
     <v-toolbar class="" style="box-shadow: 0px 0px 5px 5px #ECEFF1;" color="white" height="80">
       <v-app-bar-nav-icon></v-app-bar-nav-icon>
-
       <v-img src="../../src/assets/image/humanclone_logo.jpeg" class="pa-2" style="height: 80%;"></v-img>
       <!-- <v-toolbar-title class="text-h5">Human Clone</v-toolbar-title> -->
       <v-spacer></v-spacer>
