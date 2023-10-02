@@ -8,11 +8,18 @@ import RegisterView from '../views/RegisterView.vue'
 import AdminDashboard from '../views/admin/DashboardView.vue'
 import HumanModelView from '../views/admin/HumanModelView.vue'
 import SpeakerModelView from '../views/admin/SpeakerModelView.vue'
+// Web
+// import WebHomePageView from '../views/web/HomePageView.vue' 
 
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
+    // {
+    //   path: '/',
+    //   name: 'Human Clone',
+    //   component: WebHomePageView
+    // },
     {
       path: '/application',
       name: 'Application',
