@@ -1,4 +1,5 @@
 <template>
+  <ApplicationNav/>
   <v-card class=" elevation-0">
     <v-toolbar class="" style="box-shadow: 0px 0px 5px 5px #ECEFF1;" color="white" height="80">
       <v-app-bar-nav-icon></v-app-bar-nav-icon>
@@ -338,8 +339,12 @@ import 'video.js/dist/video-js.css'
 import { defineComponent } from 'vue'
 import { VideoPlayer } from '@videojs-player/vue'
 import 'video.js/dist/video-js.css'
+import ApplicationNav from '../components/application/ApplicationNav.vue';
 
 export default defineComponent({
+  components:{
+    ApplicationNav,
+  },
   data: () => ({
     color: '#1976D2FF',
     mask: '!#XXXXXXXX',
@@ -348,7 +353,7 @@ export default defineComponent({
     chunks: [],
     device: null,
     blobObj: null,
-    humanselected:2,
+    humanselected:1,
     videopath:'',
     file:null,
     filename: null,

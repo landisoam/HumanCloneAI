@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import CloneView from '../views/CloneView.vue'
 import CloneVoiceView from '../views/CloneVoiceView.vue'
+import HistoryView from '../views/HistoryView.vue'
 import LoginView from '../views/LoginView.vue'
 import RegisterView from '../views/RegisterView.vue'
 // Admin
@@ -20,6 +21,11 @@ const router = createRouter({
     //   name: 'Human Clone',
     //   component: WebHomePageView
     // },
+    {
+      path: '/history',
+      name: 'History',
+      component: HistoryView
+    },
     {
       path: '/application',
       name: 'Application',
