@@ -11,6 +11,8 @@ import HumanModelView from '../views/admin/HumanModelView.vue'
 import SpeakerModelView from '../views/admin/SpeakerModelView.vue'
 // Web
 // import WebHomePageView from '../views/web/HomePageView.vue' 
+// App
+import AppMusicUplaoder from '../views/AppMusicUploader.vue'
 
 
 const router = createRouter({
@@ -21,6 +23,11 @@ const router = createRouter({
     //   name: 'Human Clone',
     //   component: WebHomePageView
     // },
+    {
+      path: '/musicuploader',
+      name: 'Music Uploader',
+      component: AppMusicUplaoder
+    },
     {
       path: '/history',
       name: 'History',
