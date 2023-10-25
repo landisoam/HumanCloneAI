@@ -19,6 +19,7 @@
                     <v-list-item prepend-icon="mdi-video-stabilization" value="application" @click="this.$router.push('application')"></v-list-item>
                     <v-list-item prepend-icon="mdi-audio-input-rca" value="voice" @click="this.$router.push('voice')"></v-list-item>
                     <v-list-item prepend-icon="mdi-history" value="voice" @click="this.$router.push('history')"></v-list-item>
+                    <v-list-item prepend-icon="mdi-music-box-multiple-outline" value="voice" @click="this.$router.push('musicuploader')"></v-list-item>
             </v-list>
       </v-navigation-drawer>
     
