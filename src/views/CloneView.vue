@@ -423,7 +423,7 @@ export default defineComponent({
       muted: false,
       language: 'en',
       playbackRates: [0.7, 1.0, 1.5, 2.0],
-      autoplay: true,
+      autoplay: false,
       sources: [{
         type: "video/mp4",
         src: "http://aserious.tplinkdns.com:8000/storage/v1/object/public/generatedvideo/output_video_enhanced.mp4"
@@ -514,6 +514,10 @@ export default defineComponent({
     },
     changehuman(index) {
       this.humanselected = index
+      // playSound('http://soundbible.com/mp3/Elevator Ding-SoundBible.com-685385892.mp3');
+      // playSound('../../src/assets/sound/cardclick.wav');
+      var audio = new Audio('../../src/assets/sound/cardclick.wav'); 
+      audio.play();
       console.log("change human", this.humanselected);
     },
     speakerlist(item) {
